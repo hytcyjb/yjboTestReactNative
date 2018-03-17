@@ -17,25 +17,44 @@ import {
     SectionList
 } from 'react-native';
 import Page1 from './page1.js'
-import Page3 from './page3.js'
-import Page6_customerDetail from './page6_customerDetail.js'
-
+// import Page3 from './page3.js'
+// import Page6_customerDetail from './page6_customerDetail.js'
+// import Page7_Navigator from './page7_Navigator'
+import Page_nav from './pagenav.js'
+import Page_tag from './page_tag.js'
+import Page_text from './page_text.js'
+import Page_inputitem from './page_inputitem.js'
 export default class AwesomeProject extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+           
+        };
+    }
+
     render() {
         return (
             <ScrollView style={styles.container}>
-                <Page6_customerDetail /> 
+                {/* <Page6_customerDetail { ...this.props.update=this.update}/>  */}
+                {/* {...this.props}  */}
+                <Page_nav />
+                {/* <Page1/> */}
+                <Page_tag/>
+                <Page_text/>
+                <Page_inputitem/>
             </ScrollView>
         );
-
+    }
+    update =() => {
+        alert("更新呗");
     }
 }
 const styles = StyleSheet.create({
     container: {
-        // flex: 1,
+        flex: 1,
         // justifyContent: 'center',
         // alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: 'green',
 
     },
     iconStyle: {

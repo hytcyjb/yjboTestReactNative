@@ -21,39 +21,66 @@ var width = require('Dimensions').get('window').width;
 var imageHight = 30;
 export default class page6_customerDetail extends Component {
   _keyExtractor = (item, index) => item.id;
+
   constructor(props) {
     super(props);
     this.state = {
-      title: "aaa"
+      title: {
+        value1: "--", value2: "--", value3: "--", value4: "--", value5: "--", value6: "--", value7: "--",
+        value8: "--", value9: "--", value10: "--", value11: "--", value12: "--", value13: "--", value14: "--",
+      }
+
     };
   }
   // 接收触发信息
   activeEvent = (event) => {
     this.setState({
-      title: event
+      title: {
+        value1: "内容1", value2: "内容2", value3: "内容3", value4: "内容4", value5: "内容5", value6: "内容6", value7: "内容7",
+        value8: "内容8", value9: "内容9", value10: "内容10", value11: "内容11", value12: "内容12", value13: "内容13", value14: "内容14",
+      }
     });
   }
-
+  clickImage1 = (event) => {
+    alert("===="+event);
+    this.activeEvent(event);
+    this.props.update();
+  }
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity
-          style={styles.outViewStyle}
-          activeOpacity={1}
-          onPress={() => this.activeEvent('点击')}
-          onPressIn={() => this.activeEvent('按下')}
-          onPressOut={() => this.activeEvent('收回')}
-          onLongPress={() => this.activeEvent('长按')}
-        >
-          <Image style={styles.iconStyle}
-            source={{ uri: 'http://a.cphotos.bdimg.com/timg?image&quality=100&size=b4000_4000&sec=1519442257&di=071a01220d5340fae68baa7cbdbb1e15&src=http://imgsrc.baidu.com/imgad/pic/item/bd315c6034a85edf0bc4c71842540923dd547544.jpg' }}></Image>
+        <View key="1">
+          <TouchableOpacity
+            style={styles.outViewStyle}
+            activeOpacity={1}
+            onPress={() => this.activeEvent('点击')}
+          >
+            <View style={styles.innelContent}>
+              <Image style={styles.iconStyleLeft} source={require('../img/ic_launcher.png')}></Image>
+              <View style={styles.midViewStyle}>
+                <Text style={styles.textitem2}>{"标题"}</Text>
+                <Text style={styles.textitem2} ref='text'>{this.state.title.value1}</Text>
+              </View>
+            </View>
+            <View style={styles.innelContent}>
+              <Text style={styles.textitem2} ref='text'>{this.state.title.value1}</Text>
+              <TouchableOpacity
+                activeOpacity={1}
+                onPress={() => this.clickImage1('点击')}
+              >
+                <Image style={styles.iconStyleRight} source={require('../img/ic_launcher.png')}></Image>
+              </TouchableOpacity>
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View key="2" style={styles.outViewStyle}>
+          <Image style={styles.iconStyleLeft} source={require('../img/ic_launcher.png')}></Image>
           <View style={styles.midViewStyle}>
-            {/* <Text style={styles.textitem1}>{"yjbo::0:" + item.position}</Text> */}
-            <Text style={styles.textitem2}>{"标题"}</Text>
-            <Text style={styles.textitem2} ref='text'>{this.state.title}</Text>
+            <Text style={styles.textitem2}>{"标题2"}</Text>
+            <Text style={styles.textitem2} ref='text'>{this.state.title.value2}</Text>
           </View>
-          <Image style={styles.iconStyle} source={require('../img/ic_launcher.png')}></Image>
-        </TouchableOpacity>
+          <Image style={styles.iconStyleRight} source={require('../img/ic_launcher.png')}></Image>
+        </View>
       </View>
     );
   }
@@ -62,11 +89,12 @@ export default class page6_customerDetail extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
+    // flex: 1,
+    // justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-
+    top: 50,
+    flexDirection: 'column'
   },
   titleStyle: {
     fontSize: 20,
@@ -84,26 +112,47 @@ const styles = StyleSheet.create({
     width: width,
     flexDirection: 'row',
     backgroundColor: 'red',
-    // marginLeft:10,
-    // marginRight:10,
-    // marginTop:1,
     marginBottom: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
+    paddingLeft: 10,
     alignItems: 'center'
   },
   midViewStyle: {
-    width: width - width / 2,
-    height: imageHight,
-    justifyContent: 'center'
+    // width: width - width / 2,
+    // height: imageHight,
+    // justifyContent: 'center'
+    alignItems: 'center',
+    backgroundColor: 'white',
+    marginLeft: 20,
+    marginRight: 20,
   },
-  iconStyle: {
+  innelContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    // backgroundColor:'white',
+  },
+  iconStyleLeft: {
     width: imageHight,
     height: imageHight,
-    justifyContent: 'center',
-    // borderRadius: (width / 4 - 20) / 2,
-    // borderWidth: 1,
-    // borderColor: 'white',
-  }, bigblue: {/*设置颜色和字体大小*/
+    justifyContent: 'flex-start',
+    borderRadius: imageHight / 2,
+    borderWidth: 1,
+    borderColor: 'black',
+    backgroundColor: 'white'
+  },
+  iconStyleRight: {
+    width: imageHight,
+    height: imageHight,
+    // justifyContent: 'flex-end',
+    borderRadius: imageHight / 2,
+    borderWidth: 1,
+    borderColor: 'black',
+    backgroundColor: 'white',
+    // alignItems: 'center',
+    marginRight: 20,
+    marginLeft: 20
+  },
+  bigblue: {/*设置颜色和字体大小*/
     color: 'blue',
     fontWeight: 'bold',
     fontSize: 30,
@@ -111,18 +160,17 @@ const styles = StyleSheet.create({
   red: {
     color: 'red',
     fontSize: 10,
-  }, textitem: {
+  },
+  textitem: {
     justifyContent: 'center',
     textAlign: 'center'
-  }, textitem1: {
-    // borderBottomWidth: StyleSheet.hairlineWidth,
-    // borderBottomColor: 'red',
+  },
+  textitem1: {
     alignItems: 'center',
     textAlign: 'center',
-  }, textitem2: {
+  },
+  textitem2: {
     justifyContent: 'center',
-    // borderBottomWidth: StyleSheet.hairlineWidth,
-    // borderBottomColor: 'blue',
     alignItems: 'center',
     textAlign: 'center',
   },
