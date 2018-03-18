@@ -1,5 +1,6 @@
 package com.awesomeproject;
 
+import android.view.KeyEvent;
 import com.facebook.react.ReactActivity;
 
 public class MainActivity extends ReactActivity {
@@ -11,5 +12,15 @@ public class MainActivity extends ReactActivity {
     @Override
     protected String getMainComponentName() {
         return "AwesomeProject";
+    }
+
+     @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_MENU || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)
+                && getReactInstanceManager() != null) {
+            getReactInstanceManager().showDevOptionsDialog();
+            return true;
+        }
+        return super.onKeyUp(keyCode, event);
     }
 }

@@ -20,10 +20,12 @@ import Page1 from './page1.js'
 // import Page3 from './page3.js'
 // import Page6_customerDetail from './page6_customerDetail.js'
 // import Page7_Navigator from './page7_Navigator'
-import Page_nav from './pagenav.js'
-import Page_tag from './page_tag.js'
-import Page_text from './page_text.js'
-import Page_inputitem from './page_inputitem.js'
+// import Page_nav from './pagenav.js'
+// import Page_tag from './page_tag.js'
+// import Page_text from './page_text.js'
+// import Page_inputitem from './page_inputitem.js'
+// import Login from './xiangmujs/login'
+import Joklist from './xiangmujs/joklist'
 export default class AwesomeProject extends Component {
     constructor(props) {
         super(props);
@@ -37,11 +39,12 @@ export default class AwesomeProject extends Component {
             <ScrollView style={styles.container}>
                 {/* <Page6_customerDetail { ...this.props.update=this.update}/>  */}
                 {/* {...this.props}  */}
-                <Page_nav />
+                {/* <Page_nav /> */}
                 {/* <Page1/> */}
-                <Page_tag/>
-                <Page_text/>
-                <Page_inputitem/>
+                {/* <Page_tag/> */}
+                {/* <Page_text/> */}
+                {/* <Page_inputitem/> */}
+                <Joklist/>
             </ScrollView>
         );
     }
@@ -54,7 +57,7 @@ const styles = StyleSheet.create({
         flex: 1,
         // justifyContent: 'center',
         // alignItems: 'center',
-        backgroundColor: 'green',
+        // backgroundColor: 'green',
 
     },
     iconStyle: {
