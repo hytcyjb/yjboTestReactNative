@@ -4,6 +4,7 @@ import {
     Text, View, StyleSheet, TouchableOpacity, Alert, TouchableHighlight
     , Button, Image, FlatList,
 } from 'react-native';
+// import NavHome from "./navigator";
 /**
  * 笑话列表页面
  * yjbo 2018年03月18日14:32:39
@@ -13,10 +14,12 @@ export default class joklist extends React.Component {
         super(props);
         this.state = {
             datalist: "",
-            refreshing:false,
+            // refreshing:false,
         };
     }
-
+    // static navigationOptions = {
+    //     title: 'Welcome',
+    //   };
 
     componentWillMount() {
         let requestVal = this.getMoviesFromApiAsync(1);
@@ -31,9 +34,15 @@ export default class joklist extends React.Component {
 
     render() {
         let datalist = this.state.datalist;
+        //    let refreshing = this.state.refreshing;
+        //    console.log("=refreshing=="+refreshing);
         return (
             <View style={styles.container}>
-                <Text style={styles.textstyle}>笑话列表页面</Text>
+                <TouchableOpacity
+                    activeOpacity={1}
+                    onPress={() => this.activeEvent("")}>
+                    <Text style={styles.textstyle}>笑话列表页面</Text>
+                </TouchableOpacity>
                 {/*列表*/}
                 <FlatList
                     keyExtractor={this._keyExtractor}
@@ -41,24 +50,24 @@ export default class joklist extends React.Component {
                     renderItem={(item) => this.renderItem(item)}
                     ItemSeparatorComponent={this.ItemDivideComponent}//分割线组件
                     ListEmptyComponent={this.createEmptyView()}
-                    onRefresh={this.onRefresh}
-                    refreshing={this.state.refreshing}
+                    // onRefresh={this.onRefresh}
+                    // refreshing={refreshing}
                     onEndReachedThreshold={0.1}
-                    // onEndReached={({distanceFromEnd}) => (
-                    //       this.getMoviesFromApiAsync(3))}
+                // onEndReached={({distanceFromEnd}) => (
+                //       this.getMoviesFromApiAsync(3))}
                 />
             </View>
         )
     }
-    onRefresh =()=>{
+    onRefresh = () => {
         // this.setState({refreshing: true})//开始刷新
-        this.setState({
-            refreshing: true//开始刷新
-        });
+        // this.setState({
+        //     refreshing: true//开始刷新
+        // });
         this.getMoviesFromApiAsync(2);
     }
     _keyExtractor = (item, index) => index;
-    
+
     // item["item"]["t"]
     // _keyExtractor(item, index) {
     //     console.log(index+"==标志="+item)
@@ -71,27 +80,38 @@ export default class joklist extends React.Component {
     }
     createEmptyView() {
         return (
-            <Text style={{ fontSize: 40, alignSelf: 'center',flex:1 }}>还没有数据哦！</Text>
+            <Text style={{ fontSize: 40, alignSelf: 'center', flex: 1 }}>还没有数据哦！</Text>
         );
     }
     renderItem(item) {
         return (
-            <View style={styles.itemOutstyle}>
-                <Image style={styles.itemImgstyle}
-                    source={{ uri: item["item"]["profile_image"] }} />
-                <View style={styles.contantInstyle}>
-                    <Text style={styles.itemTextStyle}>{item["item"]["text"]}</Text>
-                    <View style={styles.contantInInstyle}>
-                        <Text style={styles.contantInInTextstyle}>{item["item"]["name"]}</Text>
-                        <Text style={styles.contantInInTextstyle}>{item["item"]["created_at"]}</Text>
+            <TouchableOpacity
+                activeOpacity={1}
+                onPress={() => this.activeEvent(item)}>
+                <View style={styles.itemOutstyle}>
+                    <Image style={styles.itemImgstyle}
+                        source={{ uri: item["item"]["profile_image"] }} />
+                    <View style={styles.contantInstyle}>
+                        <Text style={styles.itemTextStyle}>{item["item"]["text"]}</Text>
+                        <View style={styles.contantInInstyle}>
+                            <Text style={styles.contantInInTextstyle}>{item["item"]["name"]}</Text>
+                            <Text style={styles.contantInInTextstyle}>{item["item"]["created_at"]}</Text>
+                        </View>
                     </View>
                 </View>
-            </View>
+            </TouchableOpacity>
         );
+    }
+    activeEvent(item) {
+        // alert("=点击了=" + item["item"]["text"]);
+        // this.props.navigation.goBack();
+        const { navigate } = this.props.navigation;
+        // navigate("Home");
+        this.props.navigation.goBack();
     }
     //网络请求
     getMoviesFromApiAsync(page) {
-        let urlStr = 'https://www.apiopen.top/satinApi?type=1&page='+page;
+        let urlStr = 'https://www.apiopen.top/satinApi?type=1&page=' + page;
         console.log("请求的接口为:" + urlStr);
         return fetch(urlStr)
             .then((response) => response.json())
@@ -99,25 +119,26 @@ export default class joklist extends React.Component {
                 console.log("请求的返回值为:" + responseJson);
                 this.setState({
                     datalist: responseJson.data,
-                    refreshing: false//停止刷新
+                    // refreshing: false//停止刷新
                 });
                 return responseJson;
             })
             .catch((error) => {
                 console.log("请求的错误为:" + error);
                 console.error(error);
-                this.setState({
-                    refreshing: false//停止刷新
-                });
+                // this.setState({
+                //     refreshing: false//停止刷新
+                // });
             });
     }
 }
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        // flex: 1,
+        height: 1500,
         // justifyContent: 'center',
         // alignItems: 'center',
-        // backgroundColor: 'green',
+        backgroundColor: 'green',
         marginTop: 20,
         marginBottom: 20,
     },
@@ -151,6 +172,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         marginLeft: 5,
         marginRight: 5,
+        backgroundColor: "red"
     },
     itemImgstyle: {
         // flex:1,

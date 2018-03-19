@@ -26,6 +26,11 @@ import Page1 from './page1.js'
 // import Page_inputitem from './page_inputitem.js'
 // import Login from './xiangmujs/login'
 import Joklist from './xiangmujs/joklist'
+// import Pagefaltlist from "./page_faltlist"
+// import Pagefaltlist2 from "./page_faltlist2"
+// import Pagefaltlist3 from "./page_faltlist3"
+import Navigator from "./xiangmujs/navigator"
+
 export default class AwesomeProject extends Component {
     constructor(props) {
         super(props);
@@ -44,7 +49,7 @@ export default class AwesomeProject extends Component {
                 {/* <Page_tag/> */}
                 {/* <Page_text/> */}
                 {/* <Page_inputitem/> */}
-                <Joklist/>
+                <Navigator/>
             </ScrollView>
         );
     }

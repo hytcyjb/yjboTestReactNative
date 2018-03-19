@@ -29,7 +29,10 @@ export default class login extends React.Component {
             [
                 { text: '稍后再说', onPress: () => console.log('Ask me later pressed') },
                 { text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-                { text: '确定', onPress: () => this.getMoviesFromApiAsync() },
+                { text: '确定', onPress: () => { 
+                    const { navigate } = this.props.navigation;
+                    navigate("Message");
+                } },
             ],
             { cancelable: false }
         )
@@ -38,9 +41,9 @@ export default class login extends React.Component {
         console.log("render是：" + this.state.userStr + "====" + this.state.pwdStr);
         return (
             <View style={styles.container}>
-                <View style={styles.imgOutStyle}>
+                {/* <View style={styles.imgOutStyle}> */}
                     <Image style={styles.imgstyle} source={require("../../img/ic_launcher.png")} />
-                </View>
+                {/* </View> */}
                 <View style={styles.userNameOutStyle} >
                     {/* <Text></Text> */}
                     <InputItem
@@ -115,9 +118,13 @@ export default class login extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 100
+        marginTop: 100,
+        flexDirection: 'column',
     },
     userNameOutStyle: {
+        flex: 1,
+        flexDirection: 'column',
+        marginTop: 50,
     },
     buttomStyle: {
         marginTop: 50,
