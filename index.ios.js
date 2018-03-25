@@ -11,7 +11,7 @@ import {
   Text,
   View
 } from 'react-native';
-import PageHome from './js/index.js' 
+import PageHome from './index.js'
 
 export default class AwesomeProject extends Component {
   render() {

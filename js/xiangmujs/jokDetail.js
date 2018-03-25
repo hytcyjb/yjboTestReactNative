@@ -1,4 +1,3 @@
-import { InputItem } from 'antd-mobile';
 import React from 'react';
 import {
     Text, View, StyleSheet, TouchableOpacity, Alert, TouchableHighlight
@@ -9,10 +8,10 @@ var Dimensions = require('Dimensions');
 var ScreenWidth = Dimensions.get('window').width;
 var ScreenHeight = Dimensions.get('window').height;
 /**
- * 笑话列表页面
- * yjbo 2018年03月18日14:32:39
+ * 笑话详情页面
+ * @yjbo 2018年3月24日22:54:433
  */
-export default class joklist extends React.Component {
+export default class jokDetail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,9 +19,6 @@ export default class joklist extends React.Component {
             // refreshing:false,
         };
     }
-    // static navigationOptions = {
-    //     title: 'Welcome',
-    //   };
 
     componentWillMount() {
         let requestVal = this.getMoviesFromApiAsync(1);
@@ -41,24 +37,7 @@ export default class joklist extends React.Component {
         //    console.log("=refreshing=="+refreshing);
         return (
             <View style={styles.container}>
-                <TouchableOpacity
-                    activeOpacity={1}
-                    onPress={() => this.activeEvent("")}>
-                    <Text style={styles.textstyle}>笑话列表页面</Text>
-                </TouchableOpacity>
-                {/*列表*/}
-                <FlatList
-                    keyExtractor={this._keyExtractor}
-                    data={datalist}
-                    renderItem={(item) => this.renderItem(item)}
-                    ItemSeparatorComponent={this.ItemDivideComponent}//分割线组件
-                    ListEmptyComponent={this.createEmptyView()}
-                    // onRefresh={this.onRefresh}
-                    // refreshing={refreshing}
-                    onEndReachedThreshold={0.1}
-                // onEndReached={({distanceFromEnd}) => (
-                //       this.getMoviesFromApiAsync(3))}
-                />
+                {this.renderItem()}
             </View>
         )
     }
@@ -86,7 +65,9 @@ export default class joklist extends React.Component {
             <Text style={{ fontSize: 40, alignSelf: 'center', flex: 1 }}>还没有数据哦！</Text>
         );
     }
-    renderItem(item) {
+    renderItem() {
+        const { navigate } = this.props.navigation;
+        let item = navigate.pramas.item;
         return (
             <TouchableOpacity
                 activeOpacity={1}
@@ -109,8 +90,8 @@ export default class joklist extends React.Component {
         // alert("=点击了=" + item["item"]["text"]);
         // this.props.navigation.goBack();
         const { navigate } = this.props.navigation;
-        navigate("JokDetail",{item:item});
-        // this.props.navigation.goBack();
+        // navigate("Home");
+        this.props.navigation.goBack();
     }
     //网络请求
     getMoviesFromApiAsync(page) {

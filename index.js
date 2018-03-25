@@ -16,7 +16,7 @@ import {
     FlatList,
     SectionList
 } from 'react-native';
-import Page1 from './page1.js'
+// import Page1 from './page1.js'
 // import Page3 from './page3.js'
 // import Page6_customerDetail from './page6_customerDetail.js'
 // import Page7_Navigator from './page7_Navigator'
@@ -25,13 +25,13 @@ import Page1 from './page1.js'
 // import Page_text from './page_text.js'
 // import Page_inputitem from './page_inputitem.js'
 // import Login from './xiangmujs/login'
-import Joklist from './xiangmujs/joklist'
+// import Joklist from './xiangmujs/joklist'
 // import Pagefaltlist from "./page_faltlist"
 // import Pagefaltlist2 from "./page_faltlist2"
 // import Pagefaltlist3 from "./page_faltlist3"
-import Navigator from "./xiangmujs/navigator"
+import Navigator from "./js/xiangmujs/navigator"
 
-export default class AwesomeProject extends Component {
+export default class index extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -48,7 +48,7 @@ export default class AwesomeProject extends Component {
                 {/* <Page1/> */}
                 {/* <Page_tag/> */}
                 {/* <Page_text/> */}
-                {/* <Page_inputitem/> */}
+                 {/*<Page_inputitem/>*/}
                 <Navigator/>
             </ScrollView>
         );
@@ -71,3 +71,4 @@ const styles = StyleSheet.create({
         margin: 20,
     },
 });
+// AppRegistry.registerComponent('AwesomeProject', () => index);

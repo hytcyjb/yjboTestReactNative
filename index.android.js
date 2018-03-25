@@ -16,25 +16,24 @@ import {
     FlatList,
     SectionList
 } from 'react-native';
-import PageHome from './js/index.js' 
-import Page1 from './js/page1.js'
-import Page3 from './js/page3.js'
-import Page4 from './js/page4.js'
+import Navigator from "./js/xiangmujs/navigator"
 
 export default class AwesomeProject extends Component {
     render() {
         return (
-            <PageHome />
+            <View style={styles.container}>
+                <Navigator />
+            </View>
         );
 
     }
 }
 const styles = StyleSheet.create({
     container: {
-        // flex: 1,
+        flex: 1,
         // justifyContent: 'center',
         // alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#FF55ff',
 
     },
     iconStyle: {

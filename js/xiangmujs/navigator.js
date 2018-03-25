@@ -1,27 +1,25 @@
 // 引入依赖
 import React from 'react';
-import { StackNavigator } from 'react-navigation';
-import {
-  Button,
-} from 'react-native';
+import {StackNavigator} from 'react-navigation';
 import App from "./login";
-import MessageContainer from "./joklist";
+import Joklist from "./joklist";
+import JokDetail from "./jokDetail";
+
 
 //界面导航
 export default NavHome = StackNavigator({
-    Home: {
-      screen: App,
-      navigationOptions: ({navigation}) => ({
-        title: 'Home',//navigation.navigate('DrawerToggle')
-        headerLeft: (<Button onPress={() => alert("暂无内容")} title={'User'} />),
-        headerRight: (<Button onPress={() => navigation.navigate('Message')} title={'Message'} />),
-      })
+        Home: {
+            screen: App,
+        },
+        Joklist: {//显示笑话列表
+            screen: Joklist,
+        },
+        JokDetail:{//显示笑话详情
+            screen: JokDetail,
+        }
+
     },
-    Message: {
-      screen: MessageContainer,
-      navigationOptions: ({navigation}) => ({
-        title: "Message",
-        headerLeft: (<Button title='Back' onPress={() => navigation.goBack()} />)
-      })
-    },
-  });
+    {//设置起始显示的页面
+        initialRouteName: 'Home',
+    });
+
